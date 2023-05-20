@@ -1,0 +1,86 @@
+body{
+    max-width: 100%;   
+}
+
+
+img, svg, video{
+    max-width: 100%;
+    display: block;
+    padding-top: 3%;
+}
+
+.container{
+    padding: 3%;
+}
+
+
+h1{
+    color: red;
+}
+
+
+h1.heading{
+    color: black;
+    size: 4em;
+    text-align: center;
+}
+
+
+a{
+    text-decoration: none;
+}
+
+div.text-center{
+    background-color: #eee;
+    max-width: 100%;
+    max-height: 100%;
+    padding-bottom: 10%;
+    padding-left: 10%;
+    padding-right: 10%;
+
+}
+
+
+.header-title{
+    text-align: center;
+    font-size: 2em;
+    padding-bottom: 2%;
+}
+
+
+/* .btn-primary{
+    border-radius: 15%;
+} */
+.divider:after,
+.divider:before {
+content: "";
+flex: 1;
+height: 1px;
+background: #eee;
+}
+.h-custom {
+height: calc(100% - 73px);
+}
+@media (max-width: 450px) {
+.h-custom {
+height: 100%;
+}
+}
+
+
+
+
+.card{
+    
+    border:none;
+}
+
+.user-content p{
+    margin-top:5px;
+    font-size:12px;
+}
+
+
+.ratings i{
+    color:blue;
+}

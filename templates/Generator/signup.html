@@ -1,0 +1,102 @@
+
+{% extends 'Generator/base.html' %}
+{% load static %}
+{% block title %} Sign Up - All-in-One Generator {% endblock title%}
+{% block extra_tag %}
+<meta name="description" content="Sign up for All-in-One Generator, the ultimate AI-powered tool for effortless image generation. Boost your creativity and productivity by creating stunning visuals with our intuitive image generator AI tool. Join now and unleash your creative potential!">
+<meta name="keywords" content="image generator AI, AI-powered image generation, All-in-One Image Generator, visual content creation, productivity tool, AI image creation, image generator software">
+{% endblock extra_tag %}
+
+
+{% block content %}
+
+<!-- Section: Design Block -->
+<section class="">
+    <!-- Jumbotron -->
+    {% if error_message %}
+  <div class="alert alert-danger" role="alert">
+    {{ error_message }}
+  </div>
+{% endif %}
+    <div class="px-4 py-5 px-md-5 text-center text-lg-start" style="background-color: hsl(0, 0%, 96%)">
+      <div class="container">
+        <div class="row gx-lg-5 align-items-center">
+          <div class="col-lg-6 mb-5 mb-lg-0">
+            <h1 class="my-5 display-3 fw-bold ls-tight">
+              The best offer <br />
+              <span class="text-primary">for your business</span>
+            </h1>
+            <p style="color: hsl(217, 10%, 50.8%)">
+             Convert words into an image in mere seconds with the All-in-One Generator. Type a detailed description and watch your vision transform into vibrant, AI-generated art.
+
+TRUSTED AND LOVED BY 100+ TECH GRAPHICS TEAMS
+            </p>
+          </div>
+  
+          <div class="col-lg-6 mb-5 mb-lg-0">
+            <div class="card">
+              <div class="card-body py-5 px-md-5">
+
+                {% if form.errors %}
+                <div class="alert alert-danger" role="alert">
+                {{ form.errors }}
+              </div>
+                {% endif %} 
+
+                <form method='POST' action="{% url 'signup' %}">
+                  {% csrf_token %}
+                  <!-- 2 column grid layout with text inputs for the first and last names -->
+                  {% for field in form %}
+              <div class="form-outline mb-4">
+                      {{field.label_tag}}
+                      {{field}}
+              </div>
+              {% endfor %}
+
+
+                  <!-- Checkbox -->
+                  <div class="form-check d-flex justify-content-center mb-4">
+                    <input class="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked />
+                    <label class="form-check-label" for="form2Example33">
+                      Subscribe to our newsletter
+                    </label>
+                  </div>
+  
+                  <!-- Submit button -->
+                  <button type="submit" class="btn btn-primary btn-block mb-4">
+                    Sign up
+                  </button>
+  
+                  <!-- Register buttons -->
+                  <div class="text-center">
+                    <p>or sign up with:</p>
+                    <button type="button" class="btn btn-link btn-floating mx-1">
+                      <i class="fab fa-facebook-f"></i>
+                    </button>
+  
+                    <button type="button" class="btn btn-link btn-floating mx-1">
+                      <i class="fab fa-google"></i>
+                    </button>
+  
+                    <button type="button" class="btn btn-link btn-floating mx-1">
+                      <i class="fab fa-twitter"></i>
+                    </button>
+  
+                    <button type="button" class="btn btn-link btn-floating mx-1">
+                      <i class="fab fa-github"></i>
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Jumbotron -->
+
+  
+  </section>
+  <!-- Section: Design Block -->
+
+{% endblock content %}

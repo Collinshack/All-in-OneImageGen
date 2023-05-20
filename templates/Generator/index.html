@@ -1,0 +1,374 @@
+
+{% extends 'Generator/base.html' %}
+{% load static %}
+
+{% block title %} All-in-One Image Generator {% endblock title %}
+
+{% block extra_tag %} 
+
+
+<meta name="description" content="Unlock limitless creativity with our All-in-One Generator app, harnessing the power of AI to effortlessly generate stunning images. Create captivating visuals and boost your productivity with our intuitive image generator AI tool. Try it now!">
+<meta name="keywords" content="image generator AI, AI-powered image generation, All-in-One Image Generator, visual content creation, productivity tool, AI image creation, image generator software">
+   
+{% endblock extra_tag %} 
+
+
+ {% block content %}
+
+ <!---Main Hero Section-->
+ <main>
+  <section class="hero">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <h1 class="hero-heading">Unleash Your Creativity with Our Powerful All-in-One Image Generator - Do It All Here</h1>
+          <p class="lead hero-paragraph">Convert words into an image in mere seconds with the All-in-One Generator. Type a detailed description and watch your vision transform into vibrant, AI-generated art.</p>
+          <p class="fs-8 fw-semibold text-secondary mb-6" >TRUSTED AND LOVED BY 100+ TECH GRAPHICS TEAMS</p>
+          <a href="{% url 'signup' %}" class="btn btn-primary btn-lg">Get Started</a>
+        </div>
+        <div class="col-lg-6">
+          <img src="{% static 'Generator/brand.png' %}" alt="All-in-One Generator" class="col-lg-10 rounded float-end">
+        </div>
+      </div>
+    </div>
+  </section>
+
+   
+<!--End of Hero Section-->
+
+
+
+
+<!---Generate Image Sample-->
+
+<div class="card text-center">
+  <div class="card-header">
+    <ul class="nav nav-tabs card-header-tabs">
+      <li class="nav-item">
+        <p class="nav-link active" aria-current="true" href="#">Generate Images</p>
+      </li>
+      
+    </ul>
+  </div>
+  <div class="card-body">
+    <form class="row g-3" action="{% url 'index' %}" method="POST">
+      {% csrf_token %}
+
+      <div class="col">   
+        <h2>Describe your image</h2>
+        <input type="text" class="form-control"  name="user_input" placeholder="eg: an antelope">
+        
+      </div>
+      <button type="submit" class="btn btn-primary mb-3">Generate</button>
+      <div class="col-auto">
+        
+       
+      </div>
+    </form>
+  </div>
+{% if image %}
+  <div class="card" style="width: 18rem;">
+    <img src="{{image.generated_image.url}}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{image.prompt}}</h5>
+      <p class="card-text">.</p>
+      <a href="{{image.generated_image.url}}" class="btn btn-primary" download>Download Image</a>
+    </div>
+  </div>
+{% endif %}
+
+</div>
+<!---End of Generate Image Sample-->
+  
+
+
+
+
+<!---Generate QR Codes Image Sample-->
+
+<div class="card">
+  <div class="card-header">
+    <ul class="nav nav-tabs card-header-tabs">
+      <li class="nav-item">
+        <p class="nav-link active" aria-current="true" href="#">Generate QR Codes</p>
+      </li>
+      
+    </ul>
+  </div>
+  <div class="card-body">
+    <form class="row g-3" action="{% url 'qrcode' %}" method="POST">
+      {% csrf_token %}
+
+      <div class="col">   
+        <h2>Enter what you want to store in the QR code <span style="font-style: italic; font-size:12px;">eg: https://lincops.com</span> </h2>
+        <input type="text" class="form-control"  name="user_data" placeholder="https:// " required>
+        <label for="exampleDataList" class="form-label">Fill color </label>
+        <label>Fill Color</label>
+        <input type="text" class="form-control"  name="fill_color" placeholder="black">
+        <label>Background Color</label>
+        <input type="text" class="form-control"  name="background_color" placeholder="white">
+        
+      </div>
+      <button type="submit" class="btn btn-primary mb-3">Generate</button>
+      <div class="col-auto">
+        
+       
+      </div>
+    </form>
+  </div>
+{% if qrcode %}
+  <div class="card" style="width: 18rem;">
+    <img src="{{qrcode.generated_qrcode.url}}" class="card-img-top" alt="Qr Code image">
+    <div class="card-body">
+      <h5 class="card-title">{{qrcode.user_input}}</h5>
+      <p class="card-text">N/B: We didn't enable the feauture to create coloured QR codes in the meantime</p>
+      <a href="{{qrcode.generated_qrcode.url}}" class="btn btn-primary" download>Download Image</a>
+    </div>
+  </div>
+{% endif %}
+
+</div>
+<!---End of Generate Qr Code Sample-->
+
+
+
+
+<!---Cards-->
+
+<div class="container">
+  <h1 class="header-title">AI Generated Images: NATURE</h1>
+  <div class="row g-3">
+      <div class="col-12 col-md-6 col-lg-4">
+          <div class="card">
+              <img src="{% static 'last_parrot-image.jpg' %}" class="card-img-top" alt="A Street in Europe">
+              <div class="card-body">
+                  <h5 class="card-title">Nature</h5>
+                  <p class="card-text">Prompt sample: an old parrot in nature</p>
+                  <a href=""{% static 'last_parrot-image.jpg' %}"" class="btn btn-primary" download>Download</a>
+              </div>
+          </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-4">
+          <div class="card">
+              <img src="{% static 'a_fish-image_54RizOJ.jpg' %}" class="card-img-top" alt="London">
+              <div class="card-body">
+                  <h5 class="card-title">Nature</h5>
+                  <p class="card-text">Prompt sample: a fish</p>
+                  <a href="{% static 'a_fish-image_54RizOJ.jpg' %}" class="btn btn-primary" download>Download</a>
+              </div>
+          </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-4">
+          <div class="card">
+              <img src="{% static 'a_blue_bird-image.jpg' %}" class="card-img-top" alt="New York">
+              <div class="card-body">
+                  <h5 class="card-title">Nature</h5>
+                  <p class="card-text">Prompt sample: a blue bird </p>
+                  <a href="{% static 'a_blue_bird-image.jpg' %}" class="btn btn-primary" download>Download</a>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <h1 class="header-title">AI Generated Images: ANIMALS</h1>
+  <div class="row g-3">
+      <div class="col-12 col-md-6 col-lg-4">
+          <div class="card">
+              <img src="{% static 'an_antelope-image.jpg' %}" class="card-img-top" alt="A Street in Europe">
+              <div class="card-body">
+                  <h5 class="card-title">Nature</h5>
+                  <p class="card-text">Prompt Sample: An antelope </p>
+                  <a href="{% static 'an_antelope-image.jpg' %}" class="btn btn-primary" download>Download</a>
+              </div>
+          </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-4">
+          <div class="card">
+              <img src="{% static 'old_lion-image.jpg' %}" class="card-img-top" alt="London">
+              <div class="card-body">
+                  <h5 class="card-title">Nature</h5>
+                  <p class="card-text">Prompt sample: An old lion.</p>
+                  <a href="{% static 'old_lion-image.jpg' %}"class="btn btn-primary" download>Download</a>
+              </div>
+          </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-4">
+          <div class="card">
+              <img src="{% static 'an_octopus-image.jpg' %}" class="card-img-top" alt="New York">
+              <div class="card-body">
+                  <h5 class="card-title">Nature</h5>
+                  <p class="card-text"> Prompt sample: An octopus </p>
+                  <a href="{% static 'an_octopus-image.jpg' %}" class="btn btn-primary" download>Download</a>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+
+<div class="container">
+  <h1 class="header-title">HUMAN-LIKE IMAGES</h1>
+  <div class="row g-3">
+      <div class="col-12 col-md-6 col-lg-4">
+          <div class="card">
+              <img src="{% static 'an_old_man_in_the_cave-image.jpg' %}" class="card-img-top" alt="A Street in Europe">
+              <div class="card-body">
+                  <h5 class="card-title">Human</h5>
+                  <p class="card-text">Prompt sample: An old man in the cage </p>
+                  <a href="{% static 'an_old_man_in_the_cave-image.jpg' %}" class="btn btn-primary" download>Download</a>
+              </div>
+          </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-4">
+          <div class="card">
+              <img src="{% static 'programmer-image.jpg' %}" class="card-img-top" alt="London">
+              <div class="card-body">
+                  <h5 class="card-title">Human</h5>
+                  <p class="card-text"> Prompt sample: A programmer.</p>
+                  <a href="{% static 'programmer-image.jpg' %}" class="btn btn-primary" download>Download</a>
+              </div>
+          </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-4">
+          <div class="card">
+              <img src="{% static 'White_girl_in_USA-image.jpg' %}" class="card-img-top" alt="New York">
+              <div class="card-body">
+                  <h5 class="card-title">Human</h5>
+                  <p class="card-text">Prompt sample: White girl in USA </p>
+                  <a href="{% static 'White_girl_in_USA-image.jpg' %}" class="btn btn-primary" download>Download</a>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+
+
+<section class="hero">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <h1 class="hero-heading">Transform Your Marketing Game: All-in-One Image Generator</h1>
+        <p class="lead hero-paragraph">With our app, you can effortlessly generate high-quality QR codes and AI images that will captivate your audience and elevate your brand. Our QR code generator offers a wide range of customization options, allowing you to create codes that fit seamlessly into your design. Plus, our AI image generator provides an extensive library of options, so you can explore and experiment with different styles and aesthetics. So, start creating visually appealing content that stands out from the crowd with All-in-One Image Generator.</p>
+        <p class="fs-8 fw-semibold text-secondary mb-6" >TRUSTED AND LOVED BY 100+ TECH GRAPHICS TEAMS</p>
+        <a href="{% url 'signup' %}" class="btn btn-primary btn-lg">Get Started</a>
+      </div>
+      <div class="col-lg-6">
+        <img src="{% static 'Generator/qrcode.png' %}" alt="All-in-One Generator" class="col-lg-10 rounded float-end">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!--Testimonial section begins-->
+<h1 class="heading">What our customers say </h1>
+<div class="container mt-5 mb-5">
+    
+  <div class="row g-2">
+      <div class="col-md-4">
+          <div class="card p-3 text-center px-4">
+              
+              <div class="user-image">
+                  
+          <img src="{% static 'Generator/customer3.jpg' %}" class="rounded-circle" width="80"
+                  >
+                  
+              </div>
+              
+              <div class="user-content">
+                  
+                  <h5 class="mb-0">Collins Awusa </h5>
+                  <span>Marketing Manager</span>
+                  <p>"As a marketing manager, I'm always looking for tools that can help me create visually appealing content quickly and efficiently. All-in-One Image Generator has been a game-changer for me. With its ability to generate QR codes and AI images, I can easily create eye-catching graphics for our campaigns. This app has saved me so much time and effort, and the results have been outstanding. I highly recommend it to anyone in the marketing field."</p>
+                  
+              </div>
+              
+              <div class="ratings">
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  
+              </div>
+              
+          </div>
+      </div>
+      
+      <div class="col-md-4">
+          
+          <div class="card p-3 text-center px-4">
+              
+              <div class="user-image">
+                  
+          <img src="{% static 'Generator/customer2.jpg' %}" class="rounded-circle" width="80"
+                  >
+                  
+              </div>
+              
+              <div class="user-content">
+                  
+                  <h5 class="mb-0">Sam Ojo</h5>
+                  <span>Small Business Owner</span>
+                  <p>"As a small business owner, I wear multiple hats and need to juggle various tasks on a daily basis. All-in-One Image Generator has become an essential tool in my arsenal. It allows me to generate high-quality QR codes for our products, which has improved our customer experience and engagement. Additionally, the AI image generator has given us the ability to create unique visuals that align perfectly with our brand. This app is user-friendly, efficient, and has had a positive impact on our business."</p>
+                  
+              </div>
+              
+              <div class="ratings">
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  
+              </div>
+              
+          </div>
+          
+      </div>
+      
+      <div class="col-md-4">
+          
+          <div class="card p-3 text-center px-4">
+              
+              <div class="user-image">
+                  
+          <img src="{% static 'Generator/customer1.jpg' %}" class="rounded-circle" width="80"
+                  >
+                  
+              </div>
+              
+              <div class="user-content">
+                  
+                  <h5 class="mb-0">Rev. Fr Augustine Aka </h5>
+                  <span>Annunciation Schools Administrator</span>
+                  <p>"As a school owner, I'm constantly seeking innovative tools to enhance our educational offerings and improve our communication with students and parents. All-in-One Image Generator has been an incredible asset to our institution. With its powerful QR code generation capabilities, we can effortlessly create codes for various purposes, such as linking to important resources, sharing event details, or even conducting virtual tours. I highly recommend it to fellow school owners looking for an all-inclusive image generation solution."</p>
+                  
+              </div>
+              
+              <div class="ratings">
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  
+              </div>
+              
+          </div>
+          
+      </div>
+      
+      
+  </div>
+  
+</div>
+
+<!--End of testimonial section-->
+
+{% endblock content %}
+
